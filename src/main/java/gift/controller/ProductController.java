@@ -43,6 +43,13 @@ public class ProductController {
         return productService.findAllProducts();
     }
 
+    @Operation(summary = "특정 제품 조회", description = "특정 제품의 정보를 조회합니다.")
+    @GetMapping("/{productId}")
+    public ResponseEntity<ProductDTO> getProductById(@PathVariable Long productId) {
+        ProductDTO productDTO = productService.getProductById(productId);
+        return ResponseEntity.ok(productDTO);
+    }
+
     @Operation(summary = "제품 옵션 조회", description = "특정 제품의 옵션을 조회합니다.")
     @GetMapping("/{productId}/options")
     public ResponseEntity<List<OptionDTO>> getOptions(@PathVariable Long productId) {
